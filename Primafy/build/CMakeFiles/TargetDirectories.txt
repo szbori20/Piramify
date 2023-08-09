@@ -1,0 +1,2 @@
+F:/Dokumentumok/Primafy/build/CMakeFiles/edit_cache.dir
+F:/Dokumentumok/Primafy/build/CMakeFiles/rebuild_cache.dir
