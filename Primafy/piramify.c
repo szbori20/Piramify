@@ -3,42 +3,41 @@
 #include <string.h>
 
 int Piramify(char* input, int numRows, int* output) {
-    int i = 0;    
-    int j = 0;
-    int colCntr = 0;
-    int rowCntr=0;
     int totalSum = 0;
     int concatenatedValue=0;
     int len = strlen(input); 
     int matrix[numRows][len];
+    int numCols = len;
 
     // Initialize the matrix with zeros
-    for (i = 0; i < numRows; i++) {
-        for (j = 0; j <= len; j++) {
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j <= len; j++) {
             matrix[i][j] = 0;
         }
     }
 
-    // Place the input values in the matrix
-    while(colCntr < len) {
-
-    if (colCntr == rowCntr) {
-        matrix[rowCntr][colCntr] = input[colCntr]-'0';
-        if(rowCntr < numRows-1) {
-            rowCntr++;
-        }
-    }
-    if ((colCntr >= numRows) && (colCntr < ((numRows*2)-1))){
-        rowCntr--;
-        matrix[rowCntr][colCntr] = input[colCntr]-'0';
-    }
-    if((rowCntr>=0) && (colCntr>=((numRows*2)-1))) {
-        rowCntr++;
-        matrix[rowCntr][colCntr] = input[colCntr]-'0'; 
-
-    }
+    int nrRepeatPattern = ((numRows-1)*2);
     
-    colCntr++;
+    for (int row = 0; row < numRows; ++row)
+    {
+        for (int col = 0; col < numCols; ++col)
+        {
+            int mod = (col % nrRepeatPattern);
+            if (mod >= numRows)
+            {
+                mod -= numRows;
+                mod = ((numRows - 1) - (mod + 1));
+            }
+
+            if (mod == row)
+            {
+                matrix[row][col] = input[col]-'0';
+            }
+            else
+            {
+                //do nothing
+            }
+        }
     }
 
     // Concatenate the values which are greater than 0 in each row and sum them
